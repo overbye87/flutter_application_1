@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/game_core/game.dart';
 import 'package:flutter_application_1/game_core/main_loop.dart';
 
 void main() async {
@@ -11,7 +12,7 @@ void main() async {
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: Center(child: Text('Game')),
+    home: Game(),
   ));
   // startLoop();
   // runApp(const MyApp());

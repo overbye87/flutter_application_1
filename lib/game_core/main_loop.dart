@@ -1,12 +1,14 @@
+import 'dart:isolate';
+
 import 'package:time/time.dart';
 
 bool _running = true;
 final Duration tenMinutes = 10.minutes;
 
-void startLoop() {
-  final double _fps = 50;
-  final double _second = 1000;
-  final double _updateTime = _second / _fps;
+void mainLoop(SendPort sendPort) async {
+  const double _fps = 50;
+  const double _second = 1000;
+  const double _updateTime = _second / _fps;
   double _updates = 0;
 
   Stopwatch _loopWatch = Stopwatch();
@@ -18,6 +20,7 @@ void startLoop() {
     if (_loopWatch.elapsedMilliseconds > _updateTime) {
       _updates++;
       _loopWatch.reset();
+      sendPort.send(true);
     }
     if (_timerWatch.elapsedMilliseconds > _second) {
       final d = DateTime.now();
