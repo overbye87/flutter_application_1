@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_application_1/game_core/main_loop.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Center(child: Text('Game')),
+  ));
+  // startLoop();
+  // runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
